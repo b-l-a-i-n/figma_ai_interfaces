@@ -1,10 +1,10 @@
 import { buildPlugins } from './buildPlugins.babel';
 import { buildLoaders } from './buildLoaders.babel';
 import { buildResolvers } from './buildResolvers.babel';
-import {buildDevServer} from "./buildDevServer.babel";
+import { buildDevServer } from "./buildDevServer.babel";
 
 export function buildWebpackConfig(options) {
-    const {paths, mode, isDev} = options;
+    const { paths, mode, isDev } = options;
     return {
         mode: mode,
         entry: paths.entry,
@@ -18,7 +18,7 @@ export function buildWebpackConfig(options) {
             rules: buildLoaders(),
         },
         resolve: buildResolvers(),
-        devtool: isDev ? 'inline-source-map' : undefined,
+        devtool: isDev ? 'eval' : undefined,
         devServer: isDev ? buildDevServer(options) : undefined,
     }
 }

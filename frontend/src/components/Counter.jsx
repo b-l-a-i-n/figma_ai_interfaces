@@ -1,17 +1,24 @@
-import React from 'react';
-import {useState} from 'react';
+import React, { useEffect } from 'react';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getFigmaRawFile } from '../store/figmaFileSlice';
+
 import './counter.scss'
 
 export const Counter = () => {
-    const [count, setCount] = useState(0);
+    const dispatch = useDispatch();
+    const figmaFile = useSelector(state => state.figmaFile)
 
-    const increaseCount = () => {
-        setCount(v => v + 1)
+    useEffect(() => {
+        console.log(figmaFile)
+    }, [figmaFile])
+
+    const fetchFigmaFile = async () => {
+        dispatch(getFigmaRawFile())
     }
     return (
         <div>
-            <h1>{count}</h1>
-            <button onClick={increaseCount}>Increase</button>
+            <button onClick={fetchFigmaFile}>{figmaFile.status === 'success' ? 'Get markup' : 'Fetch figma file'}</button>
         </div>
     )
 }

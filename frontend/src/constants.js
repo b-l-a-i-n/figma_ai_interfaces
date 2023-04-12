@@ -1,0 +1,1 @@
+export const FIGMA_ACCESS_TOKEN = 'figd_fEPFmomcZvFH3sIooJPrFJ0ETEU5uyEBDPUpv1YU';
